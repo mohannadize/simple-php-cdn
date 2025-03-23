@@ -1,0 +1,33 @@
+RewriteEngine On
+
+# Redirect to HTTPS if not already
+# RewriteCond %{HTTPS} !=on
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# If the request is for an actual file or directory, serve it directly
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Otherwise, route everything through index.php
+RewriteRule ^ index.php [QSA,L]
+
+# Set PHP file upload limits
+php_value upload_max_filesize 20M
+php_value post_max_size 21M
+php_value memory_limit 128M
+
+# Allow cross-origin requests (if needed)
+# Header set Access-Control-Allow-Origin "*"
+
+# Set proper caching for images
+<FilesMatch "\.(jpg|jpeg|png|gif|webp)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+    Header set Expires "access plus 1 year"
+    Header set Pragma "public"
+    FileETag None
+    Header unset ETag
+</FilesMatch>
+
+# Disable directory listing
+Options -Indexes 

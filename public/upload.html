@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Image CDN - Upload</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .container {
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        #dropzone {
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #fafafa;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        #dropzone:hover, #dropzone.highlight {
+            border-color: #3498db;
+            background-color: #f0f8ff;
+        }
+        #file-input {
+            display: none;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+        #result {
+            margin-top: 20px;
+            display: none;
+        }
+        .success {
+            color: #27ae60;
+        }
+        .error {
+            color: #e74c3c;
+        }
+        pre {
+            background-color: #f8f8f8;
+            padding: 10px;
+            border-radius: 3px;
+            overflow-x: auto;
+        }
+        .image-preview {
+            max-width: 100%;
+            max-height: 400px;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        .url-variations {
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .url-variations a {
+            display: block;
+            margin-bottom: 5px;
+            color: #3498db;
+            text-decoration: none;
+        }
+        .url-variations a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>PHP Image CDN</h1>
+    
+    <div class="container">
+        <h2>Upload Image</h2>
+        <div id="dropzone">
+            <p>Drag & drop image here or click to select</p>
+            <input type="file" id="file-input" accept="image/*">
+        </div>
+        <div style="margin: 20px 0;">
+            <label for="private-key">Private Key:</label>
+            <input type="password" id="private-key" placeholder="Enter your private key" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+            <button id="upload-btn" disabled>Upload Image</button>
+        </div>
+    </div>
+    
+    <div id="result" class="container">
+        <h2>Upload Result</h2>
+        <div id="result-content"></div>
+        <img id="image-preview" class="image-preview" style="display: none;">
+        <div id="url-variations" class="url-variations" style="display: none;"></div>
+    </div>
+    
+    <div class="container">
+        <h2>Test Existing Image</h2>
+        <p>If you have already uploaded an image, you can test it here:</p>
+        <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+            <input type="text" id="filename-input" placeholder="Enter filename" style="flex: 1; padding: 8px; border-radius: 4px; border: 1px solid #ddd;">
+            <button id="test-btn">Test Image</button>
+        </div>
+        <p><small>Example: freepik__enhance__63208.jpeg</small></p>
+    </div>
+    
+    <div class="container">
+        <h2>API Documentation</h2>
+        <h3>Upload Image</h3>
+        <pre>POST /upload
+Content-Type: multipart/form-data
+Form field: image</pre>
+        
+        <h3>Access Image</h3>
+        <pre>GET /image/{filename}?w=500&q=80</pre>
+        <p>Parameters:</p>
+        <ul>
+            <li><strong>w</strong>: Desired width in pixels (optional)</li>
+            <li><strong>q</strong>: JPEG quality 1-100 (optional)</li>
+        </ul>
+    </div>
+    
+    <script>
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('file-input');
+        const uploadBtn = document.getElementById('upload-btn');
+        const testBtn = document.getElementById('test-btn');
+        const filenameInput = document.getElementById('filename-input');
+        const result = document.getElementById('result');
+        const resultContent = document.getElementById('result-content');
+        const imagePreview = document.getElementById('image-preview');
+        const urlVariations = document.getElementById('url-variations');
+        
+        // Drag and drop functionality
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, preventDefaults, false);
+        });
+        
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropzone.addEventListener(eventName, highlight, false);
+        });
+        
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, unhighlight, false);
+        });
+        
+        function highlight() {
+            dropzone.classList.add('highlight');
+        }
+        
+        function unhighlight() {
+            dropzone.classList.remove('highlight');
+        }
+        
+        dropzone.addEventListener('drop', handleDrop, false);
+        
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            
+            if (files.length) {
+                fileInput.files = files;
+                updateUploadButton();
+            }
+        }
+        
+        // Click to select file
+        dropzone.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        fileInput.addEventListener('change', updateUploadButton);
+        
+        function updateUploadButton() {
+            if (fileInput.files.length > 0) {
+                uploadBtn.disabled = false;
+            } else {
+                uploadBtn.disabled = true;
+            }
+        }
+        
+        // Upload functionality
+        uploadBtn.addEventListener('click', uploadImage);
+        
+        function uploadImage() {
+            const file = fileInput.files[0];
+            if (!file) return;
+            
+            uploadBtn.disabled = true;
+            uploadBtn.innerText = 'Uploading...';
+            
+            const formData = new FormData();
+            formData.append('image', file);
+            
+            // Get the private key from the input field
+            const privateKey = document.getElementById('private-key').value;
+            
+            fetch('/upload', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${privateKey}`
+                },
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                uploadBtn.innerText = 'Upload Image';
+                uploadBtn.disabled = false;
+                
+                result.style.display = 'block';
+                
+                if (data.success) {
+                    resultContent.innerHTML = `
+                        <p class="success">Image uploaded successfully!</p>
+                        <p><strong>Filename:</strong> ${data.filename}</p>
+                        <p><strong>URL:</strong> <a href="${data.url}" target="_blank">${data.url}</a></p>
+                    `;
+                    
+                    imagePreview.src = data.url;
+                    imagePreview.style.display = 'block';
+                    
+                    // URL variations
+                    urlVariations.innerHTML = '<h3>URL Variations</h3>';
+                    for (const [label, url] of Object.entries(data.usage)) {
+                        urlVariations.innerHTML += `<a href="${url}" target="_blank">${label}: ${url}</a>`;
+                    }
+                    urlVariations.style.display = 'block';
+                    
+                    // Update the filename input for easy testing
+                    filenameInput.value = data.filename;
+                } else {
+                    resultContent.innerHTML = `<p class="error">Error: ${data.error}</p>`;
+                    imagePreview.style.display = 'none';
+                    urlVariations.style.display = 'none';
+                }
+            })
+            .catch(error => {
+                uploadBtn.innerText = 'Upload Image';
+                uploadBtn.disabled = false;
+                result.style.display = 'block';
+                resultContent.innerHTML = `<p class="error">Error: ${error.message}</p>`;
+                imagePreview.style.display = 'none';
+                urlVariations.style.display = 'none';
+            });
+        }
+        
+        // Test existing image functionality
+        testBtn.addEventListener('click', testImage);
+        
+        function testImage() {
+            const filename = filenameInput.value.trim();
+            if (!filename) return;
+            
+            const url = `/image/${filename}`;
+            
+            // Show result
+            result.style.display = 'block';
+            resultContent.innerHTML = `<p>Testing image: ${filename}</p>`;
+            
+            // Test by loading the image
+            imagePreview.src = url;
+            imagePreview.onerror = function() {
+                resultContent.innerHTML += `<p class="error">Error: Image not found or cannot be processed</p>`;
+                imagePreview.style.display = 'none';
+                urlVariations.style.display = 'none';
+                
+                // Suggest the test script
+                resultContent.innerHTML += `<p>Try using the <a href="/test-process.php?filename=${filename}" target="_blank">test script</a> for more details.</p>`;
+            };
+            
+            imagePreview.onload = function() {
+                resultContent.innerHTML += `<p class="success">Image loaded successfully!</p>`;
+                imagePreview.style.display = 'block';
+                
+                // URL variations
+                urlVariations.innerHTML = '<h3>URL Variations</h3>';
+                const baseUrl = `/image/${filename}`;
+                
+                urlVariations.innerHTML += `<a href="${baseUrl}" target="_blank">Original size: ${baseUrl}</a>`;
+                urlVariations.innerHTML += `<a href="${baseUrl}?width=300" target="_blank">Width 300px: ${baseUrl}?width=300</a>`;
+                urlVariations.innerHTML += `<a href="${baseUrl}?width=800" target="_blank">Width 800px: ${baseUrl}?width=800</a>`;
+                urlVariations.innerHTML += `<a href="${baseUrl}?quality=50" target="_blank">Quality 50%: ${baseUrl}?quality=50</a>`;
+                urlVariations.innerHTML += `<a href="${baseUrl}?width=500&quality=75" target="_blank">Width 500px, Quality 75%: ${baseUrl}?width=500&quality=75</a>`;
+                
+                urlVariations.style.display = 'block';
+            };
+        }
+    </script>
+</body>
+</html> 

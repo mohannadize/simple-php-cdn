@@ -1,0 +1,110 @@
+[23-Mar-2025 12:49:31 Europe/Berlin] Creating upload directory: public/uploads
+[23-Mar-2025 12:49:31 Europe/Berlin] Creating processed directory: public/images
+[23-Mar-2025 12:49:31 Europe/Berlin] ImageController::serve - Serving image: freepik__enhance__63208.jpeg
+[23-Mar-2025 12:49:31 Europe/Berlin] Original image not found at: public/uploads/freepik__enhance__63208.jpeg
+[23-Mar-2025 12:49:31 Europe/Berlin] Available files in upload directory: 
+[23-Mar-2025 12:49:58 Europe/Berlin] ImageController::serve - Serving image: 43f83f05-06cd-4f9b-8c16-cd06d47d1802.jpeg
+[23-Mar-2025 12:49:58 Europe/Berlin] Processing image with width: default, quality: default
+[23-Mar-2025 12:49:58 Europe/Berlin] Image loaded successfully: public/uploads/43f83f05-06cd-4f9b-8c16-cd06d47d1802.jpeg, dimensions: 4096x1760
+[23-Mar-2025 12:49:58 Europe/Berlin] Image resized to width: 800px
+[23-Mar-2025 12:49:58 Europe/Berlin] Saving processed image to: public/images/43f83f05-06cd-4f9b-8c16-cd06d47d1802_w800_q80.jpeg with quality: 80
+[23-Mar-2025 12:49:58 Europe/Berlin] Image processed successfully: public/images/43f83f05-06cd-4f9b-8c16-cd06d47d1802_w800_q80.jpeg
+[23-Mar-2025 12:49:58 Europe/Berlin] Successfully serving processed image: 43f83f05-06cd-4f9b-8c16-cd06d47d1802_w800_q80.jpeg
+[23-Mar-2025 12:50:05 Europe/Berlin] ImageController::serve - Serving image: 43f83f05-06cd-4f9b-8c16-cd06d47d1802.jpeg
+[23-Mar-2025 12:50:05 Europe/Berlin] Processing image with width: 500, quality: default
+[23-Mar-2025 12:50:06 Europe/Berlin] Image loaded successfully: public/uploads/43f83f05-06cd-4f9b-8c16-cd06d47d1802.jpeg, dimensions: 4096x1760
+[23-Mar-2025 12:50:06 Europe/Berlin] Image resized to width: 500px
+[23-Mar-2025 12:50:06 Europe/Berlin] Saving processed image to: public/images/43f83f05-06cd-4f9b-8c16-cd06d47d1802_w500_q80.jpeg with quality: 80
+[23-Mar-2025 12:50:06 Europe/Berlin] Image processed successfully: public/images/43f83f05-06cd-4f9b-8c16-cd06d47d1802_w500_q80.jpeg
+[23-Mar-2025 12:50:06 Europe/Berlin] Successfully serving processed image: 43f83f05-06cd-4f9b-8c16-cd06d47d1802_w500_q80.jpeg
+[23-Mar-2025 12:50:06 Europe/Berlin] ImageController::serve - Serving image: 43f83f05-06cd-4f9b-8c16-cd06d47d1802.jpeg
+[23-Mar-2025 12:50:06 Europe/Berlin] Processing image with width: default, quality: 75
+[23-Mar-2025 12:50:06 Europe/Berlin] Image loaded successfully: public/uploads/43f83f05-06cd-4f9b-8c16-cd06d47d1802.jpeg, dimensions: 4096x1760
+[23-Mar-2025 12:50:06 Europe/Berlin] Image resized to width: 800px
+[23-Mar-2025 12:50:06 Europe/Berlin] Saving processed image to: public/images/43f83f05-06cd-4f9b-8c16-cd06d47d1802_w800_q75.jpeg with quality: 75
+[23-Mar-2025 12:50:06 Europe/Berlin] Image processed successfully: public/images/43f83f05-06cd-4f9b-8c16-cd06d47d1802_w800_q75.jpeg
+[23-Mar-2025 12:50:06 Europe/Berlin] Successfully serving processed image: 43f83f05-06cd-4f9b-8c16-cd06d47d1802_w800_q75.jpeg
+[23-Mar-2025 12:50:12 Europe/Berlin] ImageController::serve - Serving image: 43f83f05-06cd-4f9b-8c16-cd06d47d1802.jpeg
+[23-Mar-2025 12:50:12 Europe/Berlin] Processing image with width: 500, quality: 75
+[23-Mar-2025 12:50:12 Europe/Berlin] Image loaded successfully: public/uploads/43f83f05-06cd-4f9b-8c16-cd06d47d1802.jpeg, dimensions: 4096x1760
+[23-Mar-2025 12:50:12 Europe/Berlin] Image resized to width: 500px
+[23-Mar-2025 12:50:12 Europe/Berlin] Saving processed image to: public/images/43f83f05-06cd-4f9b-8c16-cd06d47d1802_w500_q75.jpeg with quality: 75
+[23-Mar-2025 12:50:12 Europe/Berlin] Image processed successfully: public/images/43f83f05-06cd-4f9b-8c16-cd06d47d1802_w500_q75.jpeg
+[23-Mar-2025 12:50:12 Europe/Berlin] Successfully serving processed image: 43f83f05-06cd-4f9b-8c16-cd06d47d1802_w500_q75.jpeg
+[23-Mar-2025 12:56:14 Europe/Berlin] ImageController::serve - Serving image: 43f83f05-06cd-4f9b-8c16-cd06d47d1802.jpeg
+[23-Mar-2025 12:56:14 Europe/Berlin] Original image not found at: uploads/43f83f05-06cd-4f9b-8c16-cd06d47d1802.jpeg
+[23-Mar-2025 12:56:14 Europe/Berlin] Available files in upload directory: freepik__enhance__63208.jpeg
+[23-Mar-2025 12:56:34 Europe/Berlin] ImageController::serve - Serving image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b.jpg
+[23-Mar-2025 12:56:34 Europe/Berlin] Processing image with width: default, quality: default
+[23-Mar-2025 12:56:35 Europe/Berlin] Image loaded successfully: uploads/a7e0a104-8630-4c03-a5b6-bed8a88bc80b.jpg, dimensions: 5397x3602
+[23-Mar-2025 12:56:36 Europe/Berlin] Image resized to width: 800px
+[23-Mar-2025 12:56:36 Europe/Berlin] Saving processed image to: images/a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w800_q80.jpg with quality: 80
+[23-Mar-2025 12:56:36 Europe/Berlin] Image processed successfully: images/a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w800_q80.jpg
+[23-Mar-2025 12:56:36 Europe/Berlin] Successfully serving processed image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w800_q80.jpg
+[23-Mar-2025 12:56:38 Europe/Berlin] ImageController::serve - Serving image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b.jpg
+[23-Mar-2025 12:56:38 Europe/Berlin] Processing image with width: 500, quality: default
+[23-Mar-2025 12:56:40 Europe/Berlin] Image loaded successfully: uploads/a7e0a104-8630-4c03-a5b6-bed8a88bc80b.jpg, dimensions: 5397x3602
+[23-Mar-2025 12:56:40 Europe/Berlin] Image resized to width: 500px
+[23-Mar-2025 12:56:40 Europe/Berlin] Saving processed image to: images/a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w500_q80.jpg with quality: 80
+[23-Mar-2025 12:56:40 Europe/Berlin] Image processed successfully: images/a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w500_q80.jpg
+[23-Mar-2025 12:56:40 Europe/Berlin] Successfully serving processed image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w500_q80.jpg
+[23-Mar-2025 12:56:42 Europe/Berlin] ImageController::serve - Serving image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b.jpg
+[23-Mar-2025 12:56:42 Europe/Berlin] Processing image with width: 500, quality: default
+[23-Mar-2025 12:56:42 Europe/Berlin] Successfully serving processed image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w500_q80.jpg
+[23-Mar-2025 12:56:43 Europe/Berlin] ImageController::serve - Serving image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b.jpg
+[23-Mar-2025 12:56:43 Europe/Berlin] Processing image with width: 500, quality: default
+[23-Mar-2025 12:56:43 Europe/Berlin] Successfully serving processed image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w500_q80.jpg
+[23-Mar-2025 12:56:54 Europe/Berlin] ImageController::serve - Serving image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b.jpg
+[23-Mar-2025 12:56:54 Europe/Berlin] Processing image with width: default, quality: 75
+[23-Mar-2025 12:56:56 Europe/Berlin] Image loaded successfully: uploads/a7e0a104-8630-4c03-a5b6-bed8a88bc80b.jpg, dimensions: 5397x3602
+[23-Mar-2025 12:56:56 Europe/Berlin] Image resized to width: 800px
+[23-Mar-2025 12:56:56 Europe/Berlin] Saving processed image to: images/a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w800_q75.jpg with quality: 75
+[23-Mar-2025 12:56:56 Europe/Berlin] Image processed successfully: images/a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w800_q75.jpg
+[23-Mar-2025 12:56:56 Europe/Berlin] Successfully serving processed image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w800_q75.jpg
+[23-Mar-2025 12:57:05 Europe/Berlin] ImageController::serve - Serving image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b.jpg
+[23-Mar-2025 12:57:05 Europe/Berlin] Processing image with width: default, quality: 7
+[23-Mar-2025 12:57:06 Europe/Berlin] Image loaded successfully: uploads/a7e0a104-8630-4c03-a5b6-bed8a88bc80b.jpg, dimensions: 5397x3602
+[23-Mar-2025 12:57:06 Europe/Berlin] Image resized to width: 800px
+[23-Mar-2025 12:57:06 Europe/Berlin] Saving processed image to: images/a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w800_q7.jpg with quality: 7
+[23-Mar-2025 12:57:06 Europe/Berlin] Image processed successfully: images/a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w800_q7.jpg
+[23-Mar-2025 12:57:06 Europe/Berlin] Successfully serving processed image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w800_q7.jpg
+[23-Mar-2025 12:57:08 Europe/Berlin] ImageController::serve - Serving image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b.jpg
+[23-Mar-2025 12:57:08 Europe/Berlin] Processing image with width: default, quality: 7
+[23-Mar-2025 12:57:08 Europe/Berlin] Successfully serving processed image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w800_q7.jpg
+[23-Mar-2025 12:57:09 Europe/Berlin] ImageController::serve - Serving image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b.jpg
+[23-Mar-2025 12:57:09 Europe/Berlin] Processing image with width: default, quality: 7
+[23-Mar-2025 12:57:09 Europe/Berlin] Successfully serving processed image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w800_q7.jpg
+[23-Mar-2025 12:57:09 Europe/Berlin] ImageController::serve - Serving image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b.jpg
+[23-Mar-2025 12:57:09 Europe/Berlin] Processing image with width: default, quality: 7
+[23-Mar-2025 12:57:09 Europe/Berlin] Successfully serving processed image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w800_q7.jpg
+[23-Mar-2025 12:57:13 Europe/Berlin] ImageController::serve - Serving image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b.jpg
+[23-Mar-2025 12:57:13 Europe/Berlin] Processing image with width: 500, quality: 75
+[23-Mar-2025 12:57:14 Europe/Berlin] Image loaded successfully: uploads/a7e0a104-8630-4c03-a5b6-bed8a88bc80b.jpg, dimensions: 5397x3602
+[23-Mar-2025 12:57:14 Europe/Berlin] Image resized to width: 500px
+[23-Mar-2025 12:57:14 Europe/Berlin] Saving processed image to: images/a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w500_q75.jpg with quality: 75
+[23-Mar-2025 12:57:14 Europe/Berlin] Image processed successfully: images/a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w500_q75.jpg
+[23-Mar-2025 12:57:14 Europe/Berlin] Successfully serving processed image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w500_q75.jpg
+[23-Mar-2025 12:57:21 Europe/Berlin] ImageController::serve - Serving image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b.jpg
+[23-Mar-2025 12:57:21 Europe/Berlin] Processing image with width: 2000, quality: default
+[23-Mar-2025 12:57:23 Europe/Berlin] Image loaded successfully: uploads/a7e0a104-8630-4c03-a5b6-bed8a88bc80b.jpg, dimensions: 5397x3602
+[23-Mar-2025 12:57:23 Europe/Berlin] Image resized to width: 2000px
+[23-Mar-2025 12:57:23 Europe/Berlin] Saving processed image to: images/a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w2000_q80.jpg with quality: 80
+[23-Mar-2025 12:57:23 Europe/Berlin] Image processed successfully: images/a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w2000_q80.jpg
+[23-Mar-2025 12:57:23 Europe/Berlin] Successfully serving processed image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w2000_q80.jpg
+[23-Mar-2025 12:57:26 Europe/Berlin] ImageController::serve - Serving image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b.jpg
+[23-Mar-2025 12:57:26 Europe/Berlin] Processing image with width: 2000, quality: default
+[23-Mar-2025 12:57:26 Europe/Berlin] Successfully serving processed image: a7e0a104-8630-4c03-a5b6-bed8a88bc80b_w2000_q80.jpg
+[23-Mar-2025 12:59:34 Europe/Berlin] ImageController::serve - Serving image: 6eb26ada-f834-40ae-8565-77feaffeefeb.JPG
+[23-Mar-2025 12:59:34 Europe/Berlin] Processing image with width: default, quality: default
+[23-Mar-2025 12:59:34 Europe/Berlin] Image loaded successfully: uploads/6eb26ada-f834-40ae-8565-77feaffeefeb.JPG, dimensions: 2560x3840
+[23-Mar-2025 12:59:35 Europe/Berlin] Image resized to width: 800px
+[23-Mar-2025 12:59:35 Europe/Berlin] Saving processed image to: images/6eb26ada-f834-40ae-8565-77feaffeefeb_w800_q80.JPG with quality: 80
+[23-Mar-2025 12:59:35 Europe/Berlin] Image processed successfully: images/6eb26ada-f834-40ae-8565-77feaffeefeb_w800_q80.JPG
+[23-Mar-2025 12:59:35 Europe/Berlin] Successfully serving processed image: 6eb26ada-f834-40ae-8565-77feaffeefeb_w800_q80.JPG
+[23-Mar-2025 12:59:36 Europe/Berlin] ImageController::serve - Serving image: 6eb26ada-f834-40ae-8565-77feaffeefeb.JPG
+[23-Mar-2025 12:59:36 Europe/Berlin] Processing image with width: 500, quality: default
+[23-Mar-2025 12:59:37 Europe/Berlin] Image loaded successfully: uploads/6eb26ada-f834-40ae-8565-77feaffeefeb.JPG, dimensions: 2560x3840
+[23-Mar-2025 12:59:37 Europe/Berlin] Image resized to width: 500px
+[23-Mar-2025 12:59:37 Europe/Berlin] Saving processed image to: images/6eb26ada-f834-40ae-8565-77feaffeefeb_w500_q80.JPG with quality: 80
+[23-Mar-2025 12:59:37 Europe/Berlin] Image processed successfully: images/6eb26ada-f834-40ae-8565-77feaffeefeb_w500_q80.JPG
+[23-Mar-2025 12:59:37 Europe/Berlin] Successfully serving processed image: 6eb26ada-f834-40ae-8565-77feaffeefeb_w500_q80.JPG

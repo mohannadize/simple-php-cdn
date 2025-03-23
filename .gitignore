@@ -1,0 +1,23 @@
+# Composer
+/vendor/
+composer.lock
+
+# Environment files
+.env
+.env.backup
+
+# Uploaded and processed images
+/public/uploads/*
+/public/images/*
+!public/uploads/.gitkeep
+!public/images/.gitkeep
+
+# IDE and editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# System files
+.DS_Store
+Thumbs.db 
