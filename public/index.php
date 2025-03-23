@@ -76,6 +76,7 @@ $app->get('/test-direct', function (Request $request, Response $response) {
 
 // Define API routes
 $app->post('/upload', [ImageController::class, 'upload'])->add(new AuthMiddleware());
+$app->post('/upload-url', [ImageController::class, 'uploadFromUrl'])->add(new AuthMiddleware());
 $app->get('/image/{filename}', [ImageController::class, 'serve']);
 
 // Add a catch-all route for 404 errors

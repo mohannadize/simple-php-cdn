@@ -116,6 +116,17 @@
         </div>
     </div>
     
+    <div class="container">
+        <h2>Upload from URL</h2>
+        <div style="margin: 20px 0;">
+            <label for="image-url">Image URL:</label>
+            <input type="url" id="image-url" placeholder="Enter image URL" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+            <button id="url-upload-btn">Upload from URL</button>
+        </div>
+    </div>
+    
     <div id="result" class="container">
         <h2>Upload Result</h2>
         <div id="result-content"></div>
@@ -139,6 +150,11 @@
         <pre>POST /upload
 Content-Type: multipart/form-data
 Form field: image</pre>
+        
+        <h3>Upload from URL</h3>
+        <pre>POST /upload-url
+Content-Type: application/json
+Body: {"url": "https://example.com/image.jpg"}</pre>
         
         <h3>Access Image</h3>
         <pre>GET /image/{filename}?w=500&q=80</pre>
@@ -215,6 +231,7 @@ Form field: image</pre>
         
         // Upload functionality
         uploadBtn.addEventListener('click', uploadImage);
+        document.getElementById('url-upload-btn').addEventListener('click', uploadFromUrl);
         
         function uploadImage() {
             const file = fileInput.files[0];
@@ -271,6 +288,67 @@ Form field: image</pre>
             .catch(error => {
                 uploadBtn.innerText = 'Upload Image';
                 uploadBtn.disabled = false;
+                result.style.display = 'block';
+                resultContent.innerHTML = `<p class="error">Error: ${error.message}</p>`;
+                imagePreview.style.display = 'none';
+                urlVariations.style.display = 'none';
+            });
+        }
+        
+        function uploadFromUrl() {
+            const imageUrl = document.getElementById('image-url').value.trim();
+            if (!imageUrl) return;
+            
+            const urlUploadBtn = document.getElementById('url-upload-btn');
+            urlUploadBtn.disabled = true;
+            urlUploadBtn.innerText = 'Uploading...';
+            
+            // Get the private key from the input field
+            const privateKey = document.getElementById('private-key').value;
+            
+            fetch('/upload-url', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${privateKey}`
+                },
+                body: JSON.stringify({ url: imageUrl })
+            })
+            .then(response => response.json())
+            .then(data => {
+                urlUploadBtn.innerText = 'Upload from URL';
+                urlUploadBtn.disabled = false;
+                
+                result.style.display = 'block';
+                
+                if (data.success) {
+                    resultContent.innerHTML = `
+                        <p class="success">Image uploaded successfully!</p>
+                        <p><strong>Filename:</strong> ${data.filename}</p>
+                        <p><strong>URL:</strong> <a href="${data.url}" target="_blank">${data.url}</a></p>
+                    `;
+                    
+                    imagePreview.src = data.url;
+                    imagePreview.style.display = 'block';
+                    
+                    // URL variations
+                    urlVariations.innerHTML = '<h3>URL Variations</h3>';
+                    for (const [label, url] of Object.entries(data.usage)) {
+                        urlVariations.innerHTML += `<a href="${url}" target="_blank">${label}: ${url}</a>`;
+                    }
+                    urlVariations.style.display = 'block';
+                    
+                    // Update the filename input for easy testing
+                    filenameInput.value = data.filename;
+                } else {
+                    resultContent.innerHTML = `<p class="error">Error: ${data.error}</p>`;
+                    imagePreview.style.display = 'none';
+                    urlVariations.style.display = 'none';
+                }
+            })
+            .catch(error => {
+                urlUploadBtn.innerText = 'Upload from URL';
+                urlUploadBtn.disabled = false;
                 result.style.display = 'block';
                 resultContent.innerHTML = `<p class="error">Error: ${error.message}</p>`;
                 imagePreview.style.display = 'none';

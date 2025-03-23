@@ -200,4 +200,59 @@ class ImageController
         $response->getBody()->write(file_get_contents($imagePath));
         return $response;
     }
+
+    /**
+     * Upload an image from a URL
+     */
+    public function uploadFromUrl(Request $request, Response $response): Response
+    {
+        try {
+            error_log("uploadFromUrl called - Request method: " . $request->getMethod());
+            error_log("Request headers: " . json_encode($request->getHeaders()));
+            
+            $data = json_decode($request->getBody()->getContents(), true);
+            error_log("Request body: " . json_encode($data));
+            
+            if (!isset($data['url']) || empty($data['url'])) {
+                return ResponseHelper::error($response, 'URL parameter is required', 400);
+            }
+            
+            $url = filter_var($data['url'], FILTER_VALIDATE_URL);
+            if (!$url) {
+                return ResponseHelper::error($response, 'Invalid URL format', 400);
+            }
+            
+            $filename = $this->imageService->downloadFromUrl($url);
+            
+            if (!$filename) {
+                return ResponseHelper::error($response, 'Failed to download or process image from URL', 500);
+            }
+            
+            $baseUrl = $request->getUri()->getScheme() . '://' . $request->getUri()->getHost();
+            if ($request->getUri()->getPort()) {
+                $baseUrl .= ':' . $request->getUri()->getPort();
+            }
+            
+            $imageUrl = $baseUrl . '/image/' . $filename;
+            
+            return ResponseHelper::json($response, [
+                'success' => true,
+                'filename' => $filename,
+                'url' => $imageUrl,
+                'usage' => [
+                    'original' => $imageUrl,
+                    'resize' => $imageUrl . '?w=500',
+                    'quality' => $imageUrl . '?q=75',
+                    'both' => $imageUrl . '?w=500&q=75',
+                ],
+            ]);
+        } catch (\Exception $e) {
+            error_log('URL upload error: ' . $e->getMessage());
+            return ResponseHelper::error(
+                $response,
+                'Error during URL upload: ' . $e->getMessage(),
+                500
+            );
+        }
+    }
 } 

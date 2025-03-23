@@ -14,6 +14,7 @@ A powerful and secure PHP-based Content Delivery Network (CDN) for dynamic image
 - 📊 Built-in rate limiting and file size restrictions
 - 🔄 UUID-based file naming for security
 - 📝 Detailed error logging and debugging tools
+- 🌐 Support for uploading images from URLs
 
 ## Requirements
 
@@ -104,6 +105,38 @@ Authorization: Bearer your-secret-key-here
 }
 ```
 
+### Upload from URL
+
+**Endpoint:** `POST /upload-url`
+
+**Headers:**
+```http
+Content-Type: application/json
+Authorization: Bearer your-secret-key-here
+```
+
+**Request Body:**
+```json
+{
+  "url": "https://example.com/path/to/image.jpg"
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "filename": "9a5c8f63-2d3e-4d6f-b2e1-1a6e7b8c9d0e.jpg",
+  "url": "https://your-domain.com/image/9a5c8f63-2d3e-4d6f-b2e1-1a6e7b8c9d0e.jpg",
+  "usage": {
+    "original": "https://your-domain.com/image/9a5c8f63-2d3e-4d6f-b2e1-1a6e7b8c9d0e.jpg",
+    "resize": "https://your-domain.com/image/9a5c8f63-2d3e-4d6f-b2e1-1a6e7b8c9d0e.jpg?w=500",
+    "quality": "https://your-domain.com/image/9a5c8f63-2d3e-4d6f-b2e1-1a6e7b8c9d0e.jpg?q=75",
+    "both": "https://your-domain.com/image/9a5c8f63-2d3e-4d6f-b2e1-1a6e7b8c9d0e.jpg?w=500&q=75"
+  }
+}
+```
+
 ### Serve an Image
 
 **Endpoint:** `GET /image/{filename}`
@@ -169,6 +202,31 @@ async function uploadImage(file) {
     throw error;
   }
 }
+
+// Example URL upload with authentication
+async function uploadFromUrl(imageUrl) {
+  try {
+    const response = await fetch('https://your-domain.com/upload-url', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer your-secret-key-here'
+      },
+      body: JSON.stringify({ url: imageUrl })
+    });
+
+    const data = await response.json();
+    if (data.success) {
+      console.log('Image uploaded successfully:', data.url);
+      return data;
+    } else {
+      throw new Error(data.error || 'Upload failed');
+    }
+  } catch (error) {
+    console.error('URL upload error:', error);
+    throw error;
+  }
+}
 ```
 
 ### PHP Integration Example
@@ -197,6 +255,34 @@ function uploadImage($imagePath, $apiKey) {
     
     if ($error) {
         throw new Exception('Upload failed: ' . $error);
+    }
+    
+    return json_decode($response, true);
+}
+
+// Example URL upload using PHP cURL
+function uploadFromUrl($imageUrl, $apiKey) {
+    $curl = curl_init();
+    
+    curl_setopt_array($curl, [
+        CURLOPT_URL => 'https://your-domain.com/upload-url',
+        CURLOPT_POST => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HTTPHEADER => [
+            'Content-Type: application/json',
+            'Authorization: Bearer ' . $apiKey
+        ],
+        CURLOPT_POSTFIELDS => json_encode([
+            'url' => $imageUrl
+        ])
+    ]);
+    
+    $response = curl_exec($curl);
+    $error = curl_error($curl);
+    curl_close($curl);
+    
+    if ($error) {
+        throw new Exception('URL upload failed: ' . $error);
     }
     
     return json_decode($response, true);

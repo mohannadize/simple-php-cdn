@@ -257,4 +257,79 @@ class ImageService
             error_log("Processed directory is not writable: {$this->processedDir}");
         }
     }
+
+    /**
+     * Download and save an image from a URL
+     * @param string $url The URL of the image to download
+     * @return string|null The filename if successful, null otherwise
+     */
+    public function downloadFromUrl(string $url): ?string
+    {
+        try {
+            // Create a temporary file
+            $tempFile = tempnam(sys_get_temp_dir(), 'cdn_download_');
+            
+            // Download the file
+            $imageData = file_get_contents($url);
+            if ($imageData === false) {
+                error_log("Failed to download image from URL: {$url}");
+                return null;
+            }
+            
+            // Save to temp file
+            if (file_put_contents($tempFile, $imageData) === false) {
+                error_log("Failed to save downloaded image to temp file");
+                return null;
+            }
+            
+            // Get file info
+            $finfo = new \finfo(FILEINFO_MIME_TYPE);
+            $mimeType = $finfo->file($tempFile);
+            
+            // Validate mime type
+            if (strpos($mimeType, 'image/') !== 0) {
+                error_log("Invalid MIME type for downloaded file: {$mimeType}");
+                unlink($tempFile);
+                return null;
+            }
+            
+            // Get file extension from mime type
+            $extensions = [
+                'image/jpeg' => 'jpg',
+                'image/png' => 'png',
+                'image/gif' => 'gif',
+                'image/webp' => 'webp'
+            ];
+            
+            $extension = $extensions[$mimeType] ?? null;
+            if (!$extension) {
+                error_log("Unsupported image type: {$mimeType}");
+                unlink($tempFile);
+                return null;
+            }
+            
+            // Create file array for upload method
+            $file = [
+                'name' => basename($url),
+                'type' => $mimeType,
+                'tmp_name' => $tempFile,
+                'error' => UPLOAD_ERR_OK,
+                'size' => filesize($tempFile)
+            ];
+            
+            // Use existing upload method
+            $filename = $this->upload($file);
+            
+            // Clean up temp file
+            unlink($tempFile);
+            
+            return $filename;
+        } catch (\Exception $e) {
+            error_log("Error downloading image from URL: " . $e->getMessage());
+            if (isset($tempFile) && file_exists($tempFile)) {
+                unlink($tempFile);
+            }
+            return null;
+        }
+    }
 } 

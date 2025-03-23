@@ -108,3 +108,55 @@
 [23-Mar-2025 12:59:37 Europe/Berlin] Saving processed image to: images/6eb26ada-f834-40ae-8565-77feaffeefeb_w500_q80.JPG with quality: 80
 [23-Mar-2025 12:59:37 Europe/Berlin] Image processed successfully: images/6eb26ada-f834-40ae-8565-77feaffeefeb_w500_q80.JPG
 [23-Mar-2025 12:59:37 Europe/Berlin] Successfully serving processed image: 6eb26ada-f834-40ae-8565-77feaffeefeb_w500_q80.JPG
+[23-Mar-2025 16:22:20 Europe/Berlin] ImageController::serve - Serving image: 732e9fc6-f583-4710-aa20-1ef87ac6e446.jpg
+[23-Mar-2025 16:22:20 Europe/Berlin] Processing image with width: default, quality: default
+[23-Mar-2025 16:22:20 Europe/Berlin] Image loaded successfully: uploads/732e9fc6-f583-4710-aa20-1ef87ac6e446.jpg, dimensions: 4096x2155
+[23-Mar-2025 16:22:20 Europe/Berlin] Image resized to width: 800px
+[23-Mar-2025 16:22:20 Europe/Berlin] Saving processed image to: images/732e9fc6-f583-4710-aa20-1ef87ac6e446_w800_q80.jpg with quality: 80
+[23-Mar-2025 16:22:20 Europe/Berlin] Image processed successfully: images/732e9fc6-f583-4710-aa20-1ef87ac6e446_w800_q80.jpg
+[23-Mar-2025 16:22:21 Europe/Berlin] Successfully serving processed image: 732e9fc6-f583-4710-aa20-1ef87ac6e446_w800_q80.jpg
+[23-Mar-2025 16:23:08 Europe/Berlin] Slim Application Error
+Type: RuntimeException
+Code: 0
+Message: App\Controllers\ImageController:uploadFromUrl is not resolvable
+File: /home/captain/repos/php-cdn/vendor/slim/slim/Slim/CallableResolver.php
+Line: 170
+Trace: #0 /home/captain/repos/php-cdn/vendor/slim/slim/Slim/CallableResolver.php(109): Slim\CallableResolver->assertCallable(Array, 'App\\Controllers...')
+#1 /home/captain/repos/php-cdn/vendor/slim/slim/Slim/CallableResolver.php(72): Slim\CallableResolver->resolveByPredicate('App\\Controllers...', Array, 'handle')
+#2 /home/captain/repos/php-cdn/vendor/slim/slim/Slim/Routing/Route.php(366): Slim\CallableResolver->resolveRoute(Array)
+#3 /home/captain/repos/php-cdn/src/App/Middleware/AuthMiddleware.php(54): Slim\Routing\Route->handle(Object(Slim\Psr7\Request))
+#4 /home/captain/repos/php-cdn/vendor/slim/slim/Slim/MiddlewareDispatcher.php(147): App\Middleware\AuthMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\Route))
+#5 /home/captain/repos/php-cdn/vendor/slim/slim/Slim/MiddlewareDispatcher.php(81): class@anonymous->handle(Object(Slim\Psr7\Request))
+#6 /home/captain/repos/php-cdn/vendor/slim/slim/Slim/MiddlewareDispatcher.php(81): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#7 /home/captain/repos/php-cdn/vendor/slim/slim/Slim/Routing/Route.php(341): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#8 /home/captain/repos/php-cdn/vendor/slim/slim/Slim/Routing/RouteRunner.php(84): Slim\Routing\Route->run(Object(Slim\Psr7\Request))
+#9 /home/captain/repos/php-cdn/vendor/slim/slim/Slim/Middleware/ErrorMiddleware.php(107): Slim\Routing\RouteRunner->handle(Object(Slim\Psr7\Request))
+#10 /home/captain/repos/php-cdn/vendor/slim/slim/Slim/MiddlewareDispatcher.php(147): Slim\Middleware\ErrorMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\RouteRunner))
+#11 /home/captain/repos/php-cdn/vendor/slim/slim/Slim/MiddlewareDispatcher.php(81): class@anonymous->handle(Object(Slim\Psr7\Request))
+#12 /home/captain/repos/php-cdn/vendor/slim/slim/Slim/App.php(215): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#13 /home/captain/repos/php-cdn/vendor/slim/slim/Slim/App.php(199): Slim\App->handle(Object(Slim\Psr7\Request))
+#14 /home/captain/repos/php-cdn/public/index.php(123): Slim\App->run()
+#15 /home/captain/repos/php-cdn/router.php(116): require('/home/captain/r...')
+#16 {main}
+[23-Mar-2025 16:25:19 Europe/Berlin] uploadFromUrl called - Request method: POST
+[23-Mar-2025 16:25:19 Europe/Berlin] Request headers: {"Host":["localhost"],"Connection":["keep-alive"],"Content-Length":["63"],"sec-ch-ua-platform":["\"Linux\""],"Authorization":["Bearer 89c06d8cb7dad830dd46d7ec541a29cb45769c6a8fa9f62ab24694b849120478"],"User-Agent":["Mozilla\/5.0 (X11; Linux x86_64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/134.0.0.0 Safari\/537.36 Edg\/134.0.0.0"],"sec-ch-ua":["\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Microsoft Edge\";v=\"134\""],"Content-Type":["application\/json"],"sec-ch-ua-mobile":["?0"],"Accept":["*\/*"],"Origin":["http:\/\/localhost:8000"],"Sec-Fetch-Site":["same-origin"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Dest":["empty"],"Referer":["http:\/\/localhost:8000\/"],"Accept-Encoding":["gzip, deflate, br, zstd"],"Accept-Language":["en-US,en;q=0.9"],"Cookie":["country=kw; theme=light; lang=ar; country-selected-type=undefined; authjs.csrf-token=64483fe3a8dc97913e6fcd96f0265df2cc2f8083494e65cec6dfbd616357e4c8%7C7dea35ab6c8b219631b57597f0288938ab579474deddb3d3851b1bd2557db2a5; authjs.callback-url=http%3A%2F%2Flocalhost%3A3000; __next_hmr_refresh_hash__=98"]}
+[23-Mar-2025 16:25:19 Europe/Berlin] Request body: {"url":"https:\/\/www.cats.org.uk\/media\/13139\/220325case013.jpg"}
+[23-Mar-2025 16:25:33 Europe/Berlin] ImageController::serve - Serving image: 49c666b1-d94e-40db-84d5-157bfcbd944e.jpg
+[23-Mar-2025 16:25:33 Europe/Berlin] Processing image with width: default, quality: default
+[23-Mar-2025 16:25:36 Europe/Berlin] Image loaded successfully: uploads/49c666b1-d94e-40db-84d5-157bfcbd944e.jpg, dimensions: 8192x5464
+[23-Mar-2025 16:25:37 Europe/Berlin] Image resized to width: 800px
+[23-Mar-2025 16:25:37 Europe/Berlin] Saving processed image to: images/49c666b1-d94e-40db-84d5-157bfcbd944e_w800_q80.jpg with quality: 80
+[23-Mar-2025 16:25:37 Europe/Berlin] Image processed successfully: images/49c666b1-d94e-40db-84d5-157bfcbd944e_w800_q80.jpg
+[23-Mar-2025 16:25:37 Europe/Berlin] Successfully serving processed image: 49c666b1-d94e-40db-84d5-157bfcbd944e_w800_q80.jpg
+[23-Mar-2025 16:25:46 Europe/Berlin] uploadFromUrl called - Request method: POST
+[23-Mar-2025 16:25:46 Europe/Berlin] Request headers: {"Host":["localhost"],"Connection":["keep-alive"],"Content-Length":["63"],"sec-ch-ua-platform":["\"Linux\""],"Authorization":["Bearer 89c06d8cb7dad830dd46d7ec541a29cb45769c6a8fa9f62ab24694b849120478"],"User-Agent":["Mozilla\/5.0 (X11; Linux x86_64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/134.0.0.0 Safari\/537.36 Edg\/134.0.0.0"],"sec-ch-ua":["\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Microsoft Edge\";v=\"134\""],"Content-Type":["application\/json"],"sec-ch-ua-mobile":["?0"],"Accept":["*\/*"],"Origin":["http:\/\/localhost:8000"],"Sec-Fetch-Site":["same-origin"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Dest":["empty"],"Referer":["http:\/\/localhost:8000\/"],"Accept-Encoding":["gzip, deflate, br, zstd"],"Accept-Language":["en-US,en;q=0.9"],"Cookie":["country=kw; theme=light; lang=ar; country-selected-type=undefined; authjs.csrf-token=64483fe3a8dc97913e6fcd96f0265df2cc2f8083494e65cec6dfbd616357e4c8%7C7dea35ab6c8b219631b57597f0288938ab579474deddb3d3851b1bd2557db2a5; authjs.callback-url=http%3A%2F%2Flocalhost%3A3000; __next_hmr_refresh_hash__=98"]}
+[23-Mar-2025 16:25:46 Europe/Berlin] Request body: {"url":"https:\/\/www.cats.org.uk\/media\/13139\/220325case013.jpg"}
+[23-Mar-2025 16:25:52 Europe/Berlin] ImageController::serve - Serving image: 9e605f7f-9c03-4004-9cbb-3d46dd54eb25.jpg
+[23-Mar-2025 16:25:52 Europe/Berlin] Processing image with width: default, quality: default
+[23-Mar-2025 16:25:54 Europe/Berlin] Image loaded successfully: uploads/9e605f7f-9c03-4004-9cbb-3d46dd54eb25.jpg, dimensions: 8192x5464
+[23-Mar-2025 16:25:55 Europe/Berlin] Image resized to width: 800px
+[23-Mar-2025 16:25:55 Europe/Berlin] Saving processed image to: images/9e605f7f-9c03-4004-9cbb-3d46dd54eb25_w800_q80.jpg with quality: 80
+[23-Mar-2025 16:25:55 Europe/Berlin] Image processed successfully: images/9e605f7f-9c03-4004-9cbb-3d46dd54eb25_w800_q80.jpg
+[23-Mar-2025 16:25:55 Europe/Berlin] Successfully serving processed image: 9e605f7f-9c03-4004-9cbb-3d46dd54eb25_w800_q80.jpg
+[23-Mar-2025 16:27:39 Europe/Berlin] Invalid extension: svg
+[23-Mar-2025 16:27:39 Europe/Berlin] File validation failed: {"name":"Pink%20Cute%20Thank%20You%20Card 1.svg","type":"image\/svg+xml","tmp_name":"\/tmp\/cdn_upload_peoO3G","error":0,"size":3002506}
