@@ -145,14 +145,9 @@ class ImageController
         if (!file_exists($originalPath)) {
             error_log("Original image not found at: {$originalPath}");
             
-            // List available files for debugging
-            $files = glob($this->imageService->getConfig()->get('storage.upload_dir') . '/*');
-            $fileList = implode(', ', array_map('basename', $files));
-            error_log("Available files in upload directory: {$fileList}");
-            
             return ResponseHelper::error(
                 $response, 
-                "Original image not found at: {$originalPath}. Available files: {$fileList}",
+                "Image not found",
                 404
             );
         }
