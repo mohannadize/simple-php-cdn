@@ -48,8 +48,8 @@ A powerful and secure PHP-based Content Delivery Network (CDN) for dynamic image
    APP_DEBUG=false
    APP_URL=https://your-domain.com
    
-   UPLOAD_DIR=public/uploads
-   PROCESSED_DIR=public/images
+   UPLOAD_DIR=uploads
+   PROCESSED_DIR=images
    MAX_FILE_SIZE=10485760
    ALLOWED_EXTENSIONS=jpg,jpeg,png,gif,webp
    
@@ -304,8 +304,8 @@ All configuration options can be set in your `.env` file:
 | `APP_ENV` | Environment (production/development) | production |
 | `APP_DEBUG` | Enable debug mode | false |
 | `APP_URL` | Base URL for the CDN | http://localhost |
-| `UPLOAD_DIR` | Directory for original uploads | public/uploads |
-| `PROCESSED_DIR` | Directory for processed images | public/images |
+| `UPLOAD_DIR` | Directory for original uploads | uploads |
+| `PROCESSED_DIR` | Directory for processed images | images |
 | `MAX_FILE_SIZE` | Maximum upload size in bytes | 10485760 |
 | `ALLOWED_EXTENSIONS` | Allowed file extensions | jpg,jpeg,png,gif,webp |
 | `PRIVATE_KEY` | API authentication key | null |
