@@ -71,7 +71,7 @@ class ImageService
         }
     }
 
-    public function process(string $filename, ?int $width = null, ?int $quality = null): ?string
+    public function process(string $filename, ?int $width = null, ?int $quality = null, ?string $format = null): ?string
     {
         $originalPath = $this->uploadDir . '/' . $filename;
         
@@ -82,10 +82,18 @@ class ImageService
 
         $width = $width ?: $this->config->get('image.default_width');
         $quality = $quality ?: $this->config->get('image.default_quality');
+        $format = $format ?: 'webp'; // Default to WebP if no format specified
         
         // Validate parameters
         $width = min($width, $this->config->get('image.max_width'));
         $quality = min(max($quality, 1), 100);
+        
+        // Validate format
+        $allowedFormats = ['webp', 'jpg', 'jpeg', 'png', 'gif'];
+        if (!in_array($format, $allowedFormats)) {
+            error_log("Invalid format specified: {$format}");
+            return null;
+        }
         
         $extension = pathinfo($filename, PATHINFO_EXTENSION);
         $filenameWithoutExt = pathinfo($filename, PATHINFO_FILENAME);
@@ -95,7 +103,7 @@ class ImageService
             $filenameWithoutExt,
             $width, 
             $quality, 
-            $extension
+            $format
         );
         
         $processedPath = $this->processedDir . '/' . $processedFilename;
@@ -143,9 +151,9 @@ class ImageService
                 error_log("No resize needed, requested width {$width}px is >= original width {$image->width()}px");
             }
             
-            // Save with specified quality
-            error_log("Saving processed image to: {$processedPath} with quality: {$quality}");
-            $image->save($processedPath, $quality);
+            // Save with specified quality and format
+            error_log("Saving processed image to: {$processedPath} with quality: {$quality}, format: {$format}");
+            $image->save($processedPath, $quality, $format);
             
             // Verify the file was saved
             if (!file_exists($processedPath)) {
@@ -163,9 +171,9 @@ class ImageService
         }
     }
     
-    public function getImageUrl(string $filename, ?int $width = null, ?int $quality = null): ?string
+    public function getImageUrl(string $filename, ?int $width = null, ?int $quality = null, ?string $format = null): ?string
     {
-        $processedFilename = $this->process($filename, $width, $quality);
+        $processedFilename = $this->process($filename, $width, $quality, $format);
         
         if (!$processedFilename) {
             return null;

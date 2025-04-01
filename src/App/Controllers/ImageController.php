@@ -155,10 +155,11 @@ class ImageController
         $queryParams = $request->getQueryParams();
         $width = isset($queryParams['w']) ? (int)$queryParams['w'] : null;
         $quality = isset($queryParams['q']) ? (int)$queryParams['q'] : null;
+        $format = isset($queryParams['f']) ? strtolower($queryParams['f']) : null;
         
-        error_log("Processing image with width: " . ($width ?: 'default') . ", quality: " . ($quality ?: 'default'));
+        error_log("Processing image with width: " . ($width ?: 'default') . ", quality: " . ($quality ?: 'default') . ", format: " . ($format ?: 'webp'));
         
-        $processedFilename = $this->imageService->process($filename, $width, $quality);
+        $processedFilename = $this->imageService->process($filename, $width, $quality, $format);
         
         if (!$processedFilename) {
             error_log("Failed to process image: {$filename}");
